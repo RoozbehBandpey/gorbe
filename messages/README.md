@@ -63,3 +63,13 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## Deactivate ES Lint
+
+Go to `.eslintrc.js` and comment out the entire object body
+
+## Generate Module with nest
+
+```bash
+nest generate module messages
+```
