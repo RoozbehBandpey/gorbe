@@ -73,3 +73,13 @@ Go to `.eslintrc.js` and comment out the entire object body
 ```bash
 nest generate module messages
 ```
+
+## Generate controller
+
+```bash
+nest generate controller messages/messages --flat
+```
+
+| `controller`              | `messages`                    | `/` | `messages`                | `--flat`                                       |
+| ------------------------- | ----------------------------- | --- | ------------------------- | ---------------------------------------------- |
+| type of class to generate | place it in `messages` folder |     | call the class `messages` | don't create extra folder called `controllers` |
