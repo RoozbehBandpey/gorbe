@@ -9,4 +9,4 @@ Content-Type: application/json
   "content": "hi again"
 }
 ### Get a message with ID
-GET http://localhost:3000/messages/46
+GET http://localhost:3000/messages/466
