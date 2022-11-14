@@ -17,6 +17,22 @@ An API to figure out the price of a used car for selling. with following feature
 | `POST /report`      | `Body - { make, model, year, mileage, longitude, latitude }` | Report how much a vehicle sold for           |
 | `PATCH /report`     | `Body - { approved }`                                        | Approve or reject a report submitted by user |
 
+## Dev Database
+
+TypeOrm with SQLite
+
+```bash
+$ npm install @nestjs/typeorm typeorm sqlite3
+```
+
+## Prod Database
+
+TypeORM with Postgres
+
+```bash
+$ npm install @nestjs/typeorm typeorm
+```
+
 ## Installation
 
 ```bash
