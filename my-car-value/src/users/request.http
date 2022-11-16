@@ -6,3 +6,11 @@ Content-Type: application/json
   "email": "test@test.com",
   "password": "123"
 }
+
+### Find a particular user with a givn ID
+GET http://localhost:3000/auth/1
+Content-Type: application/json
+
+### Find all users with a givn email
+GET http://localhost:3000/auth?email=test@test.com
+Content-Type: application/json
