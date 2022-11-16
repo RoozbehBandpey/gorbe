@@ -15,6 +15,14 @@ Content-Type: application/json
 GET http://localhost:3000/auth?email=test@test.com
 Content-Type: application/json
 
-### Remove user given ID
+### Remove a user given ID
 DELETE http://localhost:3000/auth/1
 Content-Type: application/json
+
+### Update a user given ID
+PATCH http://localhost:3000/auth/2
+Content-Type: application/json
+
+{
+  "email": "test1@test.com"
+}
