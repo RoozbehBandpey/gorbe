@@ -16,6 +16,14 @@ Content-Type: application/json
   "password": "123"
 }
 
+### Signing out
+POST http://localhost:3000/auth/signout
+Content-Type: application/json
+
+### Get the currently signed-in iuser
+GET http://localhost:3000/auth/whoami
+Content-Type: application/json
+
 ### Find a particular user with a givn ID
 GET http://localhost:3000/auth/2
 Content-Type: application/json
