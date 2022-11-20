@@ -20,7 +20,7 @@ Content-Type: application/json
 POST http://localhost:3000/auth/signout
 Content-Type: application/json
 
-### Get the currently signed-in iuser
+### Get the currently signed-in user
 GET http://localhost:3000/auth/whoami
 Content-Type: application/json
 
