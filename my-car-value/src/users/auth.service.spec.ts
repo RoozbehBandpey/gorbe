@@ -53,46 +53,24 @@ describe('AuthService', () => {
     expect(hash).toBeDefined();
   });
 
-  it('throws an error if the user with email that is in use', async () => {
-    fakeUsersService.find = () => Promise.resolve([{ id: 1, email: '', password: ''} as User])
-    const  password = '123';
-
-    await expect(service.signup('test@test.com', password)).rejects.toThrow(
+  it('throws an error if user signs up with email that is in use', async () => {
+    await service.signup('test@test.com', '123');
+    await expect(service.signup('test@test.com', '123')).rejects.toThrow(
       BadRequestException,
     );
   });
 
-  it('throws when signin is called with an unused email', async () => {
-    await expect(service.signin('unused-enail-test@test.com', '123')).rejects.toThrow(
-      NotFoundException,
-    );
+  it('throws if signin is called with an unused email', async () => {
+    await expect(
+      service.signin('test@test.com', '123'),
+    ).rejects.toThrow(NotFoundException);
   });
 
-  it('throws if an invalid  password is provided', async () => {
-    fakeUsersService.find = () => Promise.resolve([{ id: 1, email: 'test@test.com', password: '1234'} as User])
-    await expect(service.signin('test@test.com', '123')).rejects.toThrow(
-      BadRequestException,
-    );
-  });
-
-  it('returns a user  if a correct password is provided', async () => {
+  it('returns a user if a correct password is provided', async () => {
     await service.signup('test@test.com', '123');
     const user = service.signin('test@test.com', '123')
 
     await expect(user).toBeDefined();
-  });
-
-  it('throws an error if user signs up with email that is in use', async () => {
-    await service.signup('asdf@asdf.com', 'asdf');
-    await expect(service.signup('asdf@asdf.com', 'asdf')).rejects.toThrow(
-      BadRequestException,
-    );
-  });
- 
-  it('throws if signin is called with an unused email', async () => {
-    await expect(
-      service.signin('asdflkj@asdlfkj.com', 'passdflkj'),
-    ).rejects.toThrow(NotFoundException);
   });
 
   it('throws if an invalid password is provided', async () => {
