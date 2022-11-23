@@ -52,11 +52,23 @@ describe('AuthService', () => {
   });
 
   it('throws when signin is called with an unused email', async () => {
-    const  password = '123';
-
     await expect(service.signin('unused-enail-test@test.com', '123')).rejects.toThrow(
       NotFoundException,
     );
+  });
+
+  it('throws if an invalid  password is provided', async () => {
+    fakeUsersService.find = () => Promise.resolve([{ id: 1, email: 'test@test.com', password: '1234'} as User])
+    await expect(service.signin('test@test.com', '123')).rejects.toThrow(
+      BadRequestException,
+    );
+  });
+
+  it('returns a user  if a correct password is provided', async () => {
+    fakeUsersService.find = () => Promise.resolve([{ id: 1, email: 'test@test.com', password: '123'} as User])
+    const user = service.signin('test@test.com', '123')
+
+    await expect(user).toBeDefined();
   });
 })
 
@@ -101,3 +113,22 @@ describe('AuthService', () => {
 //     ).rejects.toThrow(NotFoundException);
 //   });
 // }
+
+// Find the src/users/auth.service.spec.ts file and make the following changes:
+
+// 1) Ensure that the import has been updated:
+
+// import { BadRequestException, NotFoundException } from '@nestjs/common';
+
+
+// 2) Refactor 'throws if an invalid password is provided' test to remove try/catch and done callback:
+
+//   it('throws if an invalid password is provided', async () => {
+//     fakeUsersService.find = () =>
+//       Promise.resolve([
+//         { email: 'asdf@asdf.com', password: 'laskdjf' } as User,
+//       ]);
+//     await expect(
+//       service.signin('laskdjf@alskdfj.com', 'passowrd'),
+//     ).rejects.toThrow(BadRequestException);
+//   });
