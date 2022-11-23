@@ -2,7 +2,7 @@ import { Test } from '@nestjs/testing';
 import { AuthService } from './auth.service';
 import { UsersService } from './users.service';
 import { User } from './users.entity';
-import { BadRequestException } from '@nestjs/common';
+import { BadRequestException, NotFoundException } from '@nestjs/common';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -50,6 +50,14 @@ describe('AuthService', () => {
       BadRequestException,
     );
   });
+
+  it('throws when signin is called with an unused email', async () => {
+    const  password = '123';
+
+    await expect(service.signin('unused-enail-test@test.com', '123')).rejects.toThrow(
+      NotFoundException,
+    );
+  });
 })
 
 
@@ -77,3 +85,19 @@ describe('AuthService', () => {
 //       BadRequestException,
 //     );
 //   });
+
+// Find the src/users/auth.service.spec.ts file and make the following changes:
+
+// 1) Update Import:
+
+// import { BadRequestException, NotFoundException } from '@nestjs/common';
+
+
+// 2) Refactor 'throws if signin is called with an unused email' test to remove try/catch and done callback:
+
+//  it('throws if signin is called with an unused email', async () => {
+//     await expect(
+//       service.signin('asdflkj@asdlfkj.com', 'passdflkj'),
+//     ).rejects.toThrow(NotFoundException);
+//   });
+// }
