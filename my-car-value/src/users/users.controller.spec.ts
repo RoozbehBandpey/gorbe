@@ -16,6 +16,7 @@ describe('UsersController', () => {
       },
       find: (email: string) => {
         return Promise.resolve([{ id: 1, email, password: '123' } as User])
+        
       },
       // remove: () => {},
       // update: () => {},
