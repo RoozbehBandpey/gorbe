@@ -109,3 +109,5 @@ dist
 db.sqlite
 
 messages.json
+
+.env*
