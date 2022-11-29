@@ -1,0 +1,50 @@
+### Create a new report
+POST http://localhost:3000/reports
+Content-Type: application/json
+
+{
+  "price": 500000,
+  "make": "Toyota",
+  "model": "Corolla",
+  "year": 1980,
+  "lng": 0,
+  "lat": 0,
+  "mileage": 100000
+}
+
+# ### Signing in
+# POST http://localhost:3000/auth/signin
+# Content-Type: application/json
+
+# {
+#   "email": "test5@test.com",
+#   "password": "123"
+# }
+
+# ### Signing out
+# POST http://localhost:3000/auth/signout
+# Content-Type: application/json
+
+# ### Get the currently signed-in user
+# GET http://localhost:3000/auth/whoami
+# Content-Type: application/json
+
+# ### Find a particular user with a givn ID
+# GET http://localhost:3000/auth/2
+# Content-Type: application/json
+
+# ### Find all users with a givn email
+# GET http://localhost:3000/auth?email=test@test.com
+# Content-Type: application/json
+
+# ### Remove a user given ID
+# DELETE http://localhost:3000/auth/1
+# Content-Type: application/json
+
+# ### Update a user given ID
+# PATCH http://localhost:3000/auth/2
+# Content-Type: application/json
+
+# {
+#   "email": "test1@test.com"
+# }
