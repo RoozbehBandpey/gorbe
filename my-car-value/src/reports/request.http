@@ -20,9 +20,9 @@ Content-Type: application/json
   "approved": true
 }
 
-# ### Signing out
-# POST http://localhost:3000/auth/signout
-# Content-Type: application/json
+### Get an estimate for an existing vehicle
+GET http://localhost:3000/reports?make=Toyota&model=Corolla&year=1980&lng=0&lat=0&mileage=100000
+Content-Type: application/json
 
 # ### Get the currently signed-in user
 # GET http://localhost:3000/auth/whoami
