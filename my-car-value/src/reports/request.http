@@ -12,14 +12,13 @@ Content-Type: application/json
   "mileage": 100000
 }
 
-# ### Signing in
-# POST http://localhost:3000/auth/signin
-# Content-Type: application/json
+### Approve an existing report
+PATCH http://localhost:3000/reports/1
+Content-Type: application/json
 
-# {
-#   "email": "test5@test.com",
-#   "password": "123"
-# }
+{
+  "approved": true
+}
 
 # ### Signing out
 # POST http://localhost:3000/auth/signout
