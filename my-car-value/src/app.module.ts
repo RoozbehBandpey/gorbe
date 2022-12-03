@@ -26,7 +26,8 @@ const dbConfig = require('../ormconfig');
         return {
           type: 'sqlite',
           database: config.get<string>('DB_NAME'),
-          entities: [User, Report],
+          entities: [],
+          autoLoadEntities: true,
           synchronize: true
           };
       }

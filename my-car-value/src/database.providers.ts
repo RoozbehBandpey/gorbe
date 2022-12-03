@@ -1,5 +1,7 @@
 import { join } from 'path';
 import { DataSource } from 'typeorm';
+import { Report } from './reports/reports.entity';
+import { User } from './users/users.entity';
 
 // export const databaseProviders = [
 //   {
@@ -27,9 +29,10 @@ import { DataSource } from 'typeorm';
 //   },
 // ];
 
-export default new DataSource({
+export const connectionSource = new DataSource({
   type: 'sqlite',
   database: 'dev-db.sqlite',
-  entities: ['**/*.entity.js'],
-  synchronize: true,
+  entities: ['dist/**/*.entity.js'],
+  synchronize: false,
+  // entities: [User, Report],
 });
