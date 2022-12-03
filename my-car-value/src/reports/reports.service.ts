@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Report } from './reports.entity';
@@ -8,7 +8,11 @@ import { GetEstimateDto } from './dtos/get-estimate.dto';
 
 @Injectable()
 export class ReportsService {
-  constructor(@InjectRepository(Report) private repo: Repository<Report>) {}
+  // constructor(@InjectRepository(Report) private repo: Repository<Report>) {}
+  constructor(
+    @Inject('REPORT_REPOSITORY')
+    private repo: Repository<Report>,
+  ) {}
 
   create(reportDto: CreateReportDto, user: User) {
     const report = this.repo.create(reportDto);

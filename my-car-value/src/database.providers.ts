@@ -1,3 +1,4 @@
+import { join } from 'path';
 import { DataSource } from 'typeorm';
 
 export const databaseProviders = [
@@ -8,7 +9,7 @@ export const databaseProviders = [
         type: 'sqlite',
         database: 'dev-db.sqlite',
         entities: [
-            __dirname + '/../**/*.entity{.ts,.js}',
+          join(__dirname, '**', '*.entity.{ts,js}')
         ],
         synchronize: true,
       });
