@@ -20,7 +20,7 @@ switch ( process.env.NODE_ENV ) {
   case 'prod':
     break;
   default:
-    throw new Error( 'unknown environment' );
+    throw new Error( 'Unknown environment' );
 }
 
 module.exports = dbConfig;
