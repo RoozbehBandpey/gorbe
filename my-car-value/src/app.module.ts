@@ -8,7 +8,6 @@ import { UsersModule } from './users/users.module';
 import { ReportsModule } from './reports/reports.module';
 import { User } from './users/users.entity';
 import { Report } from './reports/reports.entity';
-import { databaseProviders } from './database.providers';
 import { DataSource } from 'typeorm';
 const cookieSession = require('cookie-session');
 const dbConfig = require('../ormconfig');
@@ -21,20 +20,7 @@ const dbConfig = require('../ormconfig');
       isGlobal: true,
       envFilePath: `.env.${process.env.NODE_ENV}`,
     }),
-    // TypeOrmModule.forRoot(databaseProviders),
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      // Use useFactory, useClass, or useExisting
-      // to configure the DataSourceOptions.
-      useFactory: (configService: ConfigService) => (dbConfig),
-      // dataSource receives the configured DataSourceOptions
-      // and returns a Promise<DataSource>.
-      dataSourceFactory: async (options) => {
-        const dataSource = await new DataSource(options).initialize();
-        return dataSource;
-      },
-    }),
+    TypeOrmModule.forRoot(dbConfig),
     UsersModule,
     ReportsModule,
   ],
