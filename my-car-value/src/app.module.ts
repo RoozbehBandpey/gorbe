@@ -10,7 +10,6 @@ import { User } from './users/users.entity';
 import { Report } from './reports/reports.entity';
 import { DataSource } from 'typeorm';
 const cookieSession = require('cookie-session');
-const dbConfig = require('../ormconfig');
 
 
 
