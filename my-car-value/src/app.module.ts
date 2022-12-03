@@ -20,18 +20,19 @@ const dbConfig = require('../ormconfig');
       isGlobal: true,
       envFilePath: `.env.${process.env.NODE_ENV}`,
     }),
-    TypeOrmModule.forRootAsync({
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => {
-        return {
-          type: 'sqlite',
-          database: config.get<string>('DB_NAME'),
-          entities: [],
-          autoLoadEntities: true,
-          synchronize: true
-          };
-      }
-    }),
+    // TypeOrmModule.forRootAsync({
+    //   inject: [ConfigService],
+    //   useFactory: (config: ConfigService) => {
+    //     return {
+    //       type: 'sqlite',
+    //       database: config.get<string>('DB_NAME'),
+    //       entities: [],
+    //       autoLoadEntities: true,
+    //       synchronize: true
+    //       };
+    //   }
+    // }),
+    TypeOrmModule.forRoot(),
     UsersModule,
     ReportsModule,
   ],

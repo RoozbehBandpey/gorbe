@@ -1,38 +1,33 @@
-import { join } from 'path';
-import { DataSource } from 'typeorm';
-import { Report } from './reports/reports.entity';
-import { User } from './users/users.entity';
+import { DataSource, DataSourceOptions } from 'typeorm';
 
-// export const databaseProviders = [
-//   {
-//     provide: 'DATA_SOURCE',
-//     useFactory: async () => {
-//       const dataSource = new DataSource(
-//         process.env.NODE_ENV == 'dev' ?
-//         {
-//         type: 'sqlite',
-//         database: 'dev-db.sqlite',
-//         entities: ['**/*.entity.js'],
-//         synchronize: true,
-//         }
-//       :
-//       {
-//         type: 'sqlite',
-//         database: 'test-db.sqlite',
-//         entities: ['./**/*.entity.ts'],
-//         synchronize: true,
-//       }
-//       );
-
-//       return dataSource.initialize();
-//     },
-//   },
-// ];
-
-export const connectionSource = new DataSource({
+const dbConfig = {
   type: 'sqlite',
-  database: 'dev-db.sqlite',
-  entities: ['dist/**/*.entity.js'],
   synchronize: false,
-  // entities: [User, Report],
-});
+  migrations: ['migrations/*.js'],
+  cli: {
+    migrationsDir: 'migrations'
+  }
+};
+
+switch ( process.env.NODE_ENV ) {
+  case 'dev':
+    Object.assign( dbConfig, {
+      type: 'sqlite',
+      database: 'dev-db.sqlite',
+      entities: ['dist/**/*.entity.js'],
+    } );
+    break;
+  case 'test':
+    Object.assign( dbConfig, {
+      type: 'sqlite',
+      database: 'test-db.sqlite',
+      entities: ['**/*.entity.ts'],
+    } );
+    break;
+  case 'prod':
+    break;
+  default:
+    throw new Error( 'Unknown environment' );
+}
+
+export const connectionSource = new DataSource(dbConfig as DataSourceOptions);
