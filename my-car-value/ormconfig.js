@@ -1,5 +1,5 @@
-const dbConfig = {
-  synchronize: false
+var dbConfig = {
+  synchronize: false,
 };
 
 switch ( process.env.NODE_ENV ) {
@@ -7,30 +7,20 @@ switch ( process.env.NODE_ENV ) {
     Object.assign( dbConfig, {
       type: 'sqlite',
       database: 'dev-db.sqlite',
-      entities: '**/*.entity.js'
+      entities: ['**/*.entity.js'],
     } );
     break;
   case 'test':
     Object.assign( dbConfig, {
       type: 'sqlite',
       database: 'test-db.sqlite',
-      entities: '**/*.entity.ts'
+      entities: ['**/*.entity.ts'],
     } );
     break;
   case 'prod':
-    // Object.assign( dbConfig, {
-    //   type: 'sqlite',
-    //   database: 'dev-db.sqlite',
-    //   entities: '**/*.entity.js'
-    // } );
     break;
   default:
-    throw new Error( 'Unknown environment' )
+    throw new Error( 'unknown environment' );
 }
 
-module.exports = {
-  type: 'sqlite',
-  database: 'dev-db.sqlite',
-  entities: '**/*.entity.js',
-  synchronize: false
-};
+module.exports = dbConfig;
